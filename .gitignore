@@ -1,27 +1,66 @@
-# OS
+# macOS
 .DS_Store
 
-# Node (future use)
-node_modules/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.python-version.local
 
-# Logs
-*.log
+# Virtual environments
+.venv/
+venv/
+env/
 
-# Env files
-.env
+# Testing and coverage
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Build outputs
+build/
+dist/
+*.egg-info/
 
 # IDE
 .vscode/
 .idea/
 
-# Mac
-.AppleDouble
-.LSOverride
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.json
 
-# Thumbnails
-._*
+# Raw and private data
+data/raw/*
+!data/raw/.gitkeep
+
+data/interim/*
+!data/interim/.gitkeep
+
+data/processed/*
+!data/processed/.gitkeep
+
+# Reports may contain source data
+reports/*
+!reports/.gitkeep
+
+# Databases and local runtime files
+*.db
+*.sqlite
+*.sqlite3
+*.log
 
 # Temporary files
-*.swp
-*.swo
-.vercel
+*.tmp
+*.temp
+*.bak
+~$*
