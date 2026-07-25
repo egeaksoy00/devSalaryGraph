@@ -1,405 +1,303 @@
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+# Türkiye Yazılımcı Maaşları
 
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+An end-to-end Data Engineering and Data Visualization project that transforms raw software salary survey data into an interactive analytics website.
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+**Live Demo:** https://www.egeaksoy.net/yazilimcimaaslari/
 
-![Recharts](https://img.shields.io/badge/Recharts-FF6384?style=for-the-badge)
+---
 
-![Papa Parse](https://img.shields.io/badge/Papa_Parse-4CAF50?style=for-the-badge)
+## Overview
 
-![ETL Pipeline](https://img.shields.io/badge/ETL_Pipeline-6A1B9A?style=for-the-badge)
+This project analyzes salary data collected from **5,003 anonymous software professionals** in Turkey and presents the results through an interactive web application.
 
-![Data Engineering](https://img.shields.io/badge/Data_Engineering-0A66C2?style=for-the-badge)
+Instead of exposing the raw survey data, the project focuses on building a complete data pipeline that cleans, validates, transforms, aggregates, and visualizes the information.
 
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+The goal was not only to create charts, but to simulate a real-world data engineering workflow—from raw data ingestion to a production-ready analytics product.
 
-Update the existing “Türkiye Yazılımcı Maaşları” page in the current repository.
+---
 
-The page already exists at:
+## Features
 
-/yazilimcimaaslari/
+- Interactive salary analytics
+- Position-based median salary comparison
+- Salary progression by experience level
+- Company size vs. salary analysis
+- Position-to-position salary comparison
+- Dynamic filtering
+- Responsive design
+- SEO-friendly pages
+- Accessible and mobile-friendly interface
 
-Your task is to add:
+---
 
-1. A detailed “About This Project” section
-2. A clear data-source and methodology disclaimer
-3. A complete footer with my profiles, contact information, and the original data source
+# Project Architecture
 
-IMPORTANT DEPLOYMENT RESTRICTION
+```
+Raw Survey Data
+        │
+        ▼
+Python ETL Pipeline
+        │
+        ▼
+Validation
+        │
+        ▼
+Cleaning & Transformation
+        │
+        ▼
+Aggregation
+        │
+        ▼
+Processed CSV Files
+        │
+        ▼
+React Dashboard
+        │
+        ▼
+Interactive Data Visualizations
+```
 
-Do NOT deploy this project to Vercel.
+---
 
-Do NOT run:
+# Data Engineering Workflow
 
-- vercel
-- vercel --prod
-- npm run deploy
-- any production deployment command
-- git push
-- automatic publishing workflows
+The project was intentionally designed around an ETL pipeline rather than directly visualizing raw survey data.
 
-Do not create a production deployment.
+### 1. Extraction
 
-Only modify the local project files and validate the result locally.
+Raw survey data was imported from Excel using **pandas**.
 
-Do not commit the changes unless I explicitly request it.
+---
 
-====================================================
-GENERAL REQUIREMENTS
-====================================================
+### 2. Validation
 
-Before editing:
+Before processing, the dataset is validated to ensure that all required columns exist.
 
-1. Inspect the current implementation of the /yazilimcimaaslari/ page.
-2. Preserve all existing charts, filters, data loading, interactions, SEO metadata, routes, and responsive behavior.
-3. Match the page’s existing visual language.
-4. Reuse existing layout, typography, spacing, colors, and component conventions where appropriate.
-5. Do not introduce unnecessary dependencies.
-6. Keep the entire visible page content in Turkish.
-7. Do not fabricate technical claims or data-source details.
-8. Do not alter the CSV data or analytical calculations.
+Validation prevents the pipeline from continuing when mandatory fields are missing.
 
-The new content should feel integrated into the current page, not appended as an unrelated block.
+---
 
-====================================================
-SECTION 1 — ABOUT THIS PROJECT
-====================================================
+### 3. Data Cleaning
 
-Add a new section near the bottom of the page, after the charts and methodology content but before the footer.
+The pipeline standardizes:
 
-Suggested section title:
+- Salary values
+- Experience categories
+- Company size labels
+- Currency values
 
-“Proje Hakkında”
+Invalid or unexpected values are detected during this stage.
 
-This section should explain how the project was created in a concise but technically credible way.
+---
 
-The content should communicate the following points:
+### 4. Currency Normalization
 
-- The original public survey data was obtained from the following GitHub repository:
-  https://github.com/oncekiyazilimci/2026-yazilim-sektoru-maaslari
+Salary values originally stored in different currencies are converted into Turkish Lira using predefined exchange rates.
 
-- The survey contains anonymous salary responses from 5,003 software professionals.
+This allows all salaries to be compared on the same scale.
 
-- The raw data was processed through a custom data pipeline.
+---
 
-- Python and pandas were used for extraction, cleaning, validation, transformation, currency normalization, aggregation, and generation of processed datasets.
+### 5. Aggregation
 
-- Separate aggregate datasets were created for:
-  - salaries by software position
-  - salaries by position and experience
-  - salaries by company size and seniority
+Instead of exposing individual salaries, multiple analytical datasets are generated.
 
-- Median salary was preferred over arithmetic mean because salary distributions can contain extreme values and outliers.
+The project currently produces three processed datasets:
 
-- The processed CSV datasets were then presented through an interactive web interface.
+- Salary summary by position
+- Salary summary by position and experience
+- Salary summary by company size and seniority
 
-- React was used for the interface.
+Median salary is used throughout the project because salary distributions often contain significant outliers.
 
-- Recharts was used for the interactive charts.
+---
 
-- Papa Parse was used to parse processed CSV files in the frontend.
+### 6. Visualization
 
-- The project was designed as an end-to-end data engineering and data visualization project, covering the flow from raw data to a public-facing data product.
+The processed datasets are consumed by a React application that renders interactive charts using Recharts.
 
-Do not present this as a long wall of text.
+Users can explore the data without exposing any raw survey responses.
 
-Use a clean editorial structure.
+---
 
-Possible layout:
+# Tech Stack
 
-- Short introductory paragraph
-- A compact process timeline or step list
-- A small technology list
-- A highlighted source reference
+## Data Engineering
 
-Suggested process stages:
+- Python
+- pandas
 
-1. Veri Kaynağı
-2. Veri Temizleme
-3. Doğrulama ve Dönüştürme
-4. Toplulaştırma
-5. Görselleştirme
+## Frontend
 
-Use concise Turkish descriptions beneath each stage.
+- React
+- Recharts
+- Papa Parse
 
-Example tone:
+## Deployment
 
-“Ham anket verileri Python ve pandas ile temizlendi, doğrulandı ve analiz için yeniden yapılandırıldı.”
+- Vercel
 
-Avoid exaggerated wording such as:
+---
 
-- tamamen kusursuz
-- kesin sonuçlar
-- Türkiye’nin en doğru maaş verisi
-- sektörü eksiksiz temsil eder
+# What I Learned
 
-====================================================
-SECTION 2 — DATA SOURCE
-====================================================
+This project was built primarily as a learning experience in Data Engineering.
 
-Add a visible source block inside or directly after the “Proje Hakkında” section.
+Throughout the development process I gained hands-on experience with:
 
-Suggested heading:
+## ETL Pipelines
 
-“Veri Kaynağı”
+- Designing modular ETL pipelines
+- Separating extraction, transformation, validation and loading logic
+- Building reusable pipeline components
 
-Include:
+---
 
-“Bu projede kullanılan ham veriler, Önceki Yazılımcı tarafından yayımlanan açık GitHub deposundan alınmıştır.”
+## Data Validation
 
-Create a clickable external link to:
+- Detecting malformed datasets
+- Validating required columns
+- Preventing invalid data from entering the pipeline
+
+---
+
+## Data Cleaning
+
+- Standardizing categorical values
+- Cleaning inconsistent labels
+- Preparing datasets for aggregation
+
+---
+
+## Data Transformation
+
+- Currency normalization
+- Feature engineering
+- Dataset restructuring
+
+---
+
+## Data Aggregation
+
+- Grouping data using pandas
+- Computing median salary statistics
+- Creating analysis-ready datasets
+
+---
+
+## Frontend Data Visualization
+
+- Building reusable chart components
+- Working with CSV datasets in React
+- Designing interactive analytical dashboards
+- Creating responsive data visualizations
+
+---
+
+## Software Engineering
+
+- Modular project structure
+- Separation of concerns
+- Reusable components
+- Clean code practices
+- End-to-end project organization
+
+---
+
+# Repository Structure
+
+```
+project
+│
+├── data
+│
+├── reports
+│
+├── src
+│   └── salary_switch
+│       ├── extraction
+│       ├── validation
+│       ├── transformation
+│       ├── loading
+│       └── pipelines
+│
+├── processed_data
+│
+└── frontend
+```
+
+---
+
+# Data Source
+
+The original survey data used in this project was obtained from the following public GitHub repository:
 
 https://github.com/oncekiyazilimci/2026-yazilim-sektoru-maaslari
 
-Recommended link label:
+The original survey and raw responses belong to the repository owner and contributors.
 
-“2026 Yazılım Sektörü Maaşları — GitHub”
+This project does **not** claim ownership of the original dataset.
 
-External links must:
+My contribution consists of:
 
-- open in a new tab
-- use rel="noopener noreferrer"
-- have a visible hover and keyboard focus state
-- remain accessible
+- data validation
+- data cleaning
+- data transformation
+- aggregation
+- ETL pipeline development
+- frontend implementation
+- interactive visualization
+- analytical presentation
 
-Clearly distinguish between:
+---
 
-- the original public dataset
-- my own data processing, aggregation, analysis, and visualization work
+# Disclaimer
 
-Do not imply that I collected the original survey responses myself.
+This project is an independent educational and portfolio project.
 
-A suitable sentence would be:
+The visualizations are based on publicly available anonymous survey responses.
 
-“Anket verilerinin toplanması ve ilk yayımlanması kaynak depo sahibine aittir; veri temizleme, dönüştürme, toplulaştırma ve bu sayfadaki görselleştirme çalışmaları bu proje kapsamında gerçekleştirilmiştir.”
+The results should be interpreted as aggregated survey statistics and **not** as official salary benchmarks for the Turkish software industry.
 
-====================================================
-SECTION 3 — DISCLAIMER
-====================================================
+Sample sizes differ across positions, experience levels and company sizes.
 
-Add a visually distinct but restrained disclaimer block.
+---
 
-Suggested title:
+# Future Improvements
 
-“Veri ve Yorumlama Notu”
+Some ideas planned for future versions:
 
-The disclaimer should explain all of the following:
+- Multi-year salary comparisons
+- Inflation-adjusted salaries
+- Additional analytical datasets
+- Interactive filtering improvements
+- Downloadable reports
+- More advanced statistical analysis
+- Automated ETL updates
+- CI/CD pipeline for automatic data refresh
 
-- The dataset comes from a publicly available third-party repository.
-- The original data belongs to its respective publisher or contributors.
-- This website is an independent analysis and visualization project.
-- It is not officially affiliated with, endorsed by, or operated by the original repository owner.
-- Survey participation was voluntary and anonymous.
-- The results represent the survey participants and may not represent the entire Turkish software industry.
-- Sample sizes differ by position, experience level, seniority, and company size.
-- Segments with smaller sample sizes may be less representative.
-- Salaries are presented for informational and analytical purposes only.
-- The results should not be interpreted as guaranteed market salaries, employment advice, financial advice, or compensation commitments.
-- Median values summarize the available survey responses and should be interpreted together with sample count.
-- Any processing or interpretation errors may be reported using the contact email.
+---
 
-Use clear Turkish language.
+# Author
 
-Keep the disclaimer concise enough to remain readable.
+**Ege Aksoy**
 
-Suggested copy direction:
+Computer Technologies and Information Systems (CTIS) Student  
+Bilkent University
 
-“Bu sayfadaki sonuçlar gönüllü ve anonim anket yanıtlarının toplulaştırılmış analizidir. Veriler, Türkiye’deki tüm yazılım çalışanlarını eksiksiz biçimde temsil etmeyebilir. Özellikle düşük örneklemli segmentler yorumlanırken katılımcı sayısı dikkate alınmalıdır.”
+Portfolio  
+https://www.egeaksoy.net
 
-Do not hide this information inside a tooltip or collapsed panel.
+LinkedIn  
+https://www.linkedin.com/in/egeaksoy00/
 
-It must be visible on the page.
+GitHub  
+https://github.com/egeaksoy00
 
-====================================================
-SECTION 4 — FOOTER
-====================================================
-
-Add a complete footer at the bottom of the page.
-
-The footer should visually match the rest of the salary page.
-
-It should be responsive and readable on mobile.
-
-Use semantic HTML:
-
-<footer>
-
-Recommended structure:
-
-LEFT COLUMN
-
-Project identity:
-
-“Türkiye Yazılımcı Maaşları”
-
-Short description:
-
-“Türkiye’deki yazılım maaşlarını pozisyon, deneyim ve şirket büyüklüğüne göre inceleyen bağımsız veri analizi projesi.”
-
-MIDDLE COLUMN
-
-Heading:
-
-“Bağlantılar”
-
-Add:
-
-- GitHub
-- LinkedIn
-- E-posta
-
-Use the existing GitHub and LinkedIn URLs already present elsewhere in the portfolio repository.
-
-Do not guess these URLs.
-
-Search the existing project files and reuse the exact existing profile links.
-
-The email must be:
+Email
 
 egeaksoy@ug.bilkent.edu.tr
 
-Create a mailto link:
+---
 
-mailto:egeaksoy@ug.bilkent.edu.tr
-
-Suggested visible contact text:
-
-“Herhangi bir soru, geri bildirim veya düzeltme için egeaksoy@ug.bilkent.edu.tr adresinden ulaşabilirsiniz.”
-
-RIGHT COLUMN
-
-Heading:
-
-“Veri Kaynağı”
-
-Add a clickable source link:
-
-“Önceki Yazılımcı — 2026 Yazılım Sektörü Maaşları”
-
-URL:
-
-https://github.com/oncekiyazilimci/2026-yazilim-sektoru-maaslari
-
-Add a short attribution:
-
-“Ham anket verileri açık kaynak olarak yayımlanan bu depodan alınmıştır.”
-
-BOTTOM ROW
-
-Add:
-
-- Dynamic current year
-- My name
-- A short independent-project notice
-
-Example:
-
-“© [CURRENT YEAR] Ege Aksoy. Bağımsız veri analizi ve görselleştirme projesi.”
-
-Do not hardcode the year if the existing framework allows it to be generated dynamically.
-
-====================================================
-DESIGN REQUIREMENTS
-====================================================
-
-The new sections should preserve the current editorial and data-product style.
-
-Use:
-
-- generous spacing
-- restrained typography
-- soft borders
-- subtle background contrast
-- readable paragraph widths
-- clear section hierarchy
-- responsive grid layouts
-- accessible link styles
-- visible focus states
-
-Avoid:
-
-- oversized cards
-- excessive icons
-- bright gradients
-- heavy shadows
-- legal-document styling
-- dense walls of text
-- repeating the same source link too many times
-
-The “About” section may use a process timeline, compact cards, or a structured grid, but it should remain visually lightweight.
-
-The disclaimer should be noticeable without looking like an error alert.
-
-====================================================
-ACCESSIBILITY
-====================================================
-
-Ensure:
-
-- proper heading hierarchy
-- semantic section elements
-- semantic footer element
-- descriptive anchor text
-- keyboard accessibility
-- visible focus styles
-- sufficient contrast
-- external links are identifiable
-- icons, if used, have accessible labels
-- no meaning depends only on color
-
-====================================================
-SEO AND STRUCTURED CONTENT
-====================================================
-
-Preserve the existing SEO implementation.
-
-Do not remove or overwrite:
-
-- page title
-- meta description
-- canonical URL
-- Open Graph metadata
-- sitemap configuration
-- trailing-slash routing
-
-The new “About” and disclaimer text must be present in the rendered HTML so search engines can index it.
-
-Do not render essential text only through canvas, tooltip, or client-only hover states.
-
-If the project already uses structured data, update it only when appropriate and without breaking the existing schema.
-
-====================================================
-VALIDATION
-====================================================
-
-After implementation, validate locally:
-
-1. The /yazilimcimaaslari/ page still loads correctly.
-2. All four existing charts continue to work.
-3. CSV data continues to load correctly.
-4. Search, filters, comparison controls, and tooltips still work.
-5. The About section appears above the footer.
-6. The source repository link is correct.
-7. GitHub and LinkedIn links reuse the exact URLs already present in the portfolio.
-8. The email link opens the default mail client.
-9. External links use target="_blank" and rel="noopener noreferrer".
-10. The disclaimer is visible and readable.
-11. The footer works correctly on desktop, tablet, and mobile.
-12. No existing route or portfolio page is broken.
-13. Run the appropriate local build and lint commands.
-14. Resolve any errors introduced by the changes.
-
-Do not deploy to Vercel.
-
-Do not push to GitHub.
-
-Do not create a Git commit.
-
-At the end, provide a concise implementation report containing:
-
-- files changed
-- components added or updated
-- local validation commands run
-- build and lint results
-- confirmation that no deployment, commit, or push was performed
+If you have any suggestions, improvements, or find any issues, feel free to contact me.
